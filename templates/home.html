@@ -8,6 +8,9 @@ Hello , {{ user.username }}!
 <p>
     <a href="{% url 'logout' %}">LoG Out</a>
 </p>
+<p>
+    <a href="{% url 'password_reset' %}">reset password </a>
+</p>
 {% else %}
 <p>You are not login</p>
 <a href="{% url 'login' %}"> Log In</a>
