@@ -25,7 +25,7 @@ SECRET_KEY = '+16#efl&n69myifrewd!@#++c&s+x=sbt^5d*yv++q$)neh_39'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'social.apps.django_app.default',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -119,9 +121,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = 'home'
 
 LOGOUT_REDIRECT_URL = 'home'
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
 
+AUTHENTICATION_BACKENDS = [
+
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.facebook.FacebookAppOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social.backends.twitter.TwitterOAuth',
+    'social_core.backends.google.GoogleOAuth2',
+]
+SOCIAL_AUTH_FACEBOOK_KEY = '3571902376269734' # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '356496ab12f0bec7b3573620e2901a8d' # Facebook App Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_TWITTER_KEY = 'XXX' # Twitter Consumer Key
+SOCIAL_AUTH_TWITTER_SECRET = 'XXX' # Twitter Consumer Secret
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '841519538254-d9uvic5usvnmahr8bfhnunsf7g93h171.apps.googleusercontent.com' # Google Consumer Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'bDDBewNOkNI46sAxJZtiro6G' # Google Consumer Secret
